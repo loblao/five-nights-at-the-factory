@@ -1,4 +1,5 @@
 from direct.gui.DirectGui import *
+from direct.gui.OnscreenImage import OnscreenImage
 from direct.fsm.FSM import FSM
 from panda3d.core import *
 import random, math
@@ -37,12 +38,13 @@ class CameraBrowser(NodePath):
         self.title = OnscreenText(parent=topFrame, pos=(-.6, .8), fg=(1, 1, 1, 1), text="REC",
                                   font=base.cogFont, scale=.16)
         
-        self.titleSquare = DirectFrame(parent=self.title, frameColor=(1, 0, 0, .85), frameSize=(-.08, .08, -.08, .08),
-                                       pos=(-.85, 0, .84))
+        self.titleSquare = OnscreenImage(image = 'data/676.png',parent=self.title,pos=(-.85, 0, .84),scale=.07)
         
-        self.exitButton = DirectButton(parent=base.a2dTopRight, pos=(-.2, 0, -.35), command=self.controls.request,
-                                       text="X", text_fg=(1, 1, 0, 1), text_font=base.cogFont, relief=None,
-                                       scale=.15, extraArgs=['Flashlight'])
+        self.exitButton = DirectButton(text="Close", text_fg=(1, 1, 1, 1), scale=.07,
+                                          pos=(0, 0, -.9), text_bg=(0, 0, 0, .75),
+                                          text_font=base.cogFont, command=self.controls.request,
+                                          extraArgs=['Flashlight'])    
+        self.titleSquare.setTransparency(1)
                   
     def load(self):
         self.map = base.a2dBottomRight.attachNewNode(CardMaker("fnaf-map").generate())
