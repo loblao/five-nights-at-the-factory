@@ -16,6 +16,7 @@ class FNAFBase(FSM):
         
         if not self.withinTTH:
             base.cogFont = loader.loadFont('data/vtRemingtonPortable.ttf')
+            base.pixelFont = loader.loadFont('data/LCD_Solid.ttf')
             base.accept("escape", self.handleEsc)
             base.accept("f9", self.screenshot)
             
@@ -145,10 +146,10 @@ class FNAFBase(FSM):
         self.bgFrame = DirectFrame(parent=render2d, frameSize=(-1, 1, -1, 1), frameColor=(0, 0, 0, 1))
         self.title = OnscreenText(text="Five Nights at the Factory", pos=(0, .8), font=base.cogFont,
                                   fg=(1, 1, 1, 1), scale=.15, wordwrap=1.6 / .15)
-        self.newGameButton = DirectButton(text="NEW GAME", pos=(0, 0, -.2), text_font=base.cogFont, relief=None,
-                                          scale=.2, text_fg=(1, 1, 0, 1), command=self.demand, extraArgs=['Game'])
-        self.continueButton = DirectButton(text="CONTINUE", pos=(0, 0, -.6), text_font=base.cogFont, relief=None,
-                                           scale=.2, text_fg=(1, 1, 0, 1), command=self.__continue)
+        self.newGameButton = DirectButton(text="NEW GAME", pos=(0, 0, -.2), text_font=base.pixelFont, relief=None,
+                                          scale=.1, text_fg=(1, 1, 1, 1), command=self.demand, extraArgs=['Game'])
+        self.continueButton = DirectButton(text="CONTINUE", pos=(0, 0, -.6), text_font=base.pixelFont, relief=None,
+                                           scale=.1, text_fg=(1, 1, 1, 1), command=self.__continue)
                                            
     def exitMenu(self):
         self.bgFrame.removeNode()

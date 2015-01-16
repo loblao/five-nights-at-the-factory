@@ -35,7 +35,7 @@ class CameraBrowser(NodePath):
         bottomFrame = DirectFrame(frameSize=(-.98, .98, -.98, -.96), frameColor=frameColor, parent=self)
         topFrame = DirectFrame(frameSize=(-.98, .98, .98, .96), frameColor=frameColor, parent=self)
         
-        self.title = OnscreenText(parent=topFrame, pos=(-.6, .8), fg=(1, 1, 1, 1), text="REC",
+        self.title = OnscreenText(parent=topFrame, pos=(-.6, .8), fg=(1, 1, 1, 1), text="",
                                   font=base.cogFont, scale=.16)
         
         self.titleSquare = OnscreenImage(image = 'data/676.png',parent=self.title,pos=(-.85, 0, .84),scale=.07)
