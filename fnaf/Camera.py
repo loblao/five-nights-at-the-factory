@@ -68,14 +68,15 @@ class CameraBrowser(NodePath):
         self.enableCurrentCamera()
         
     def disableCurrentCamera(self):
-        dr, name, button = self.cameras[self.__cameraIndex]
-        dr.setActive(0)
+        name, button, camNP = self.cameras[self.__cameraIndex]
+        base.camera.reparentTo(render)
+        base.camera.setPos(render, 0, 0, 0)
         button['state'] = DGG.NORMAL
         
     def enableCurrentCamera(self):
-        dr, name, button = self.cameras[self.__cameraIndex]
-        dr.setActive(1)
-        
+        name, button, camNP = self.cameras[self.__cameraIndex]
+        base.camera.reparentTo(camNP)
+        base.camera.setPos(camNP, 0, 30, -10)
         cleanName = name.replace(' ', '')
         cleanName = cleanName.replace('(', '')
         cleanName = cleanName.replace(')', '')
@@ -87,14 +88,6 @@ class CameraBrowser(NodePath):
         camNP = render.attachNewNode(Camera('cam'))
         camNP.setPos(pos)
         camNP.setHpr(hpr)
-        
-        displayRegion = base.win.makeDisplayRegion(0, 1, 0, 1)
-        displayRegion.setCamera(camNP)
-        displayRegion.setClearColor((0, 0, 0, 1))
-        displayRegion.setClearColorActive(True)
-        displayRegion.setClearDepthActive(True)
-        displayRegion.setActive(0)
-        
         cleanName = name.replace(' ', '')
         cleanName = cleanName.replace('(', '')
         cleanName = cleanName.replace(')', '')
@@ -108,7 +101,7 @@ class CameraBrowser(NodePath):
         button.bind(DGG.B1PRESS, lambda x: self.setCamera(index))
         button.setTextureOff()
         
-        self.cameras.append((displayRegion, name, button))
+        self.cameras.append((name, button, camNP))
         
     def blinkSquare(self, task):
         time = int(task.time)
