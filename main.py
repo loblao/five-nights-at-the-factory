@@ -3,7 +3,7 @@ from fnaf.FNAFBase import FNAFBase
 from pandac.PandaModules import loadPrcFile
 
 if __debug__:
-    loadPrcFile('config.prc')
+    loadPrcFile('etc/config.prc')
 
 class GameBase(FNAFBase, ShowBase):
     def __init__(self):
