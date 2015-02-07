@@ -38,13 +38,13 @@ class CameraBrowser(NodePath):
         self.title = OnscreenText(parent=topFrame, pos=(-.6, .8), fg=(1, 1, 1, 1), text="",
                                   font=base.cogFont, scale=.16)
         
-        self.titleSquare = OnscreenImage(image = 'data/676.png',parent=self.title,pos=(-.85, 0, .84),scale=.07)
+        self.titleCircle = OnscreenImage(image = 'data/titleCircle.png',parent=self.title,pos=(-.85, 0, .84),scale=.07)
         
         self.exitButton = DirectButton(text="Close", text_fg=(1, 1, 1, 1), scale=.07,
                                           pos=(0, 0, -.9), text_bg=(0, 0, 0, .75),
                                           text_font=base.cogFont, command=self.controls.request,
                                           extraArgs=['Flashlight'])    
-        self.titleSquare.setTransparency(1)
+        self.titleCircle.setTransparency(1)
                   
     def load(self):
         self.map = base.a2dBottomRight.attachNewNode(CardMaker("fnaf-map").generate())
@@ -105,7 +105,7 @@ class CameraBrowser(NodePath):
         
     def blinkSquare(self, task):
         time = int(task.time)
-        method = (self.titleSquare.hide, self.titleSquare.show)[time % 2]
+        method = (self.titleCircle.hide, self.titleCircle.show)[time % 2]
         method()
         return task.cont
         
@@ -113,7 +113,7 @@ class CameraBrowser(NodePath):
         NodePath.show(self)
         self.exitButton.unstash()
         self.map.unstash()
-        self.titleSquare.show()
+        self.titleCircle.show()
         taskMgr.doMethodLater(1, self.blinkSquare, 'fnaf-camera-blinkSquare')
         self.enableCurrentCamera()
         
