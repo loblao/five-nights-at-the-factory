@@ -1,5 +1,9 @@
 from direct.showbase.ShowBase import ShowBase
 from fnaf.FNAFBase import FNAFBase
+from pandac.PandaModules import loadPrcFile
+
+if __debug__:
+    loadPrcFile('data/config.prc')
 
 class GameBase(FNAFBase, ShowBase):
     def __init__(self):
