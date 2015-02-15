@@ -20,8 +20,9 @@ class GameBase(FNAFBase, ShowBase):
 
 GameBase()
 
-# from fnaf import Timer
-# Timer.Timer.secondsPerHour = 6
+if config.GetBool('want-speed-hack', False):
+    from fnaf import Timer
+    Timer.Timer.secondsPerHour = 6
 
 base.startGame()
 run()
