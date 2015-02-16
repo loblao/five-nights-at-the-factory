@@ -103,7 +103,7 @@ class CameraBrowser(NodePath):
         
         self.cameras.append((name, button, camNP))
         
-    def blinkSquare(self, task):
+    def blinkCircle(self, task):
         time = int(task.time)
         method = (self.titleCircle.hide, self.titleCircle.show)[time % 2]
         method()
@@ -114,7 +114,7 @@ class CameraBrowser(NodePath):
         self.exitButton.unstash()
         self.map.unstash()
         self.titleCircle.show()
-        taskMgr.doMethodLater(1, self.blinkSquare, 'fnaf-camera-blinkSquare')
+        taskMgr.doMethodLater(1, self.blinkCircle, 'fnaf-camera-blinkCircle')
         self.enableCurrentCamera()
         
     def hide(self):
@@ -123,7 +123,7 @@ class CameraBrowser(NodePath):
         if hasattr(self, 'map'):
             self.map.stash()
             self.disableCurrentCamera()
-        taskMgr.remove('fnaf-camera-blinkSquare')
+        taskMgr.remove('fnaf-camera-blinkCircle')
 
 class CameraControls(FSM):
     def __init__(self):

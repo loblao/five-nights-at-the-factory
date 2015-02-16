@@ -4,7 +4,6 @@ from panda3d.core import loadPrcFile
 
 if __debug__:
     loadPrcFile('config/dev.prc')
-    
 else:
     loadPrcFile('config/release.prc')
 
@@ -13,7 +12,7 @@ class GameBase(FNAFBase, ShowBase):
         ShowBase.__init__(self)
         FNAFBase.__init__(self)
         self.disableMouse()
-        
+
         if not __debug__:
             self.transitions.IrisModelName = "data/iris.egg.pz"
             self.transitions.FadeModelName = "data/fade.egg.pz"
